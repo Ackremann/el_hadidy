@@ -35,6 +35,7 @@ class _MyWidgetState extends State<MyWidget> {
   void initState() {
     super.initState();
     if (Platform.isAndroid) WebView.platform = AndroidWebView();
+    if (Platform.isIOS) WebView.platform = CupertinoWebView();
   }
 
   @override
