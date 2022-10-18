@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -29,10 +30,9 @@ class MyApp extends StatelessWidget {
       navigatorKey: navigatorKey, // OR Locale('ar', 'AE') OR Other RTL locales,
       theme: ThemeData(
           appBarTheme: const AppBarTheme(
-              backgroundColor: AppColors.blue,
-              elevation: 0,
-            )),
+        backgroundColor: AppColors.blue,
+        elevation: 0,
+      )),
     );
   }
 }
-

@@ -21,6 +21,10 @@ class DrawerFb1 extends StatelessWidget {
                   image: AssetImage('assets/splash_cover.jpg'),
                 ),
               ),
+              // child: CircleAvatarWithTransition(
+              //     primaryColor: Colors.blue,
+              //     image: NetworkImage(
+              //         "https://gravatar.com/avatar/f33c768ea4c84ac3662a4e2646362f14?s=400&d=robohash&r=x")),
               child: SizedBox(
                 width: double.infinity,
                 child: Column(
@@ -36,7 +40,8 @@ class DrawerFb1 extends StatelessWidget {
                           'محمود',
                           style:
                               Theme.of(context).textTheme.headline6!.copyWith(
-                                    color: AppColors.orange,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.white,
                                   ),
                         ))
                   ],
@@ -116,6 +121,77 @@ class MenuItem extends StatelessWidget {
         hoverColor: hoverColor,
         onTap: onClicked,
       ),
+    );
+  }
+}
+
+class CircleAvatarWithTransition extends StatelessWidget {
+  /// the base color of the images background and its concentric circles.
+  final Color primaryColor;
+
+  /// the profile image to be displayed.
+  final ImageProvider image;
+
+  ///the diameter of the entire widget, including the concentric circles.
+  final double size;
+
+  /// the width between the edges of each concentric circle.
+  final double transitionBorderwidth;
+
+  const CircleAvatarWithTransition(
+      {Key? key,
+      required Color this.primaryColor,
+      required ImageProvider this.image,
+      this.size = 190.0,
+      this.transitionBorderwidth = 20.0})
+      : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: AlignmentDirectional.center,
+      children: <Widget>[
+        Container(
+            child: Container(
+          height: size,
+          width: size,
+          decoration: BoxDecoration(
+              shape: BoxShape.circle, color: primaryColor.withOpacity(0.05)),
+        )),
+        Container(
+          child: Container(
+              height: size - transitionBorderwidth,
+              width: size - transitionBorderwidth,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: RadialGradient(
+                    stops: [0.01, 0.5],
+                    colors: [Colors.white, primaryColor.withOpacity(0.1)]),
+              )),
+        ),
+        Container(
+          child: Container(
+              height: size - (transitionBorderwidth * 2),
+              width: size - (transitionBorderwidth * 2),
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: primaryColor.withOpacity(0.4))),
+        ),
+        Container(
+          child: Container(
+              height: size - (transitionBorderwidth * 3),
+              width: size - (transitionBorderwidth * 3),
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: primaryColor.withOpacity(0.5))),
+        ),
+        Container(
+            child: Container(
+                height: size - (transitionBorderwidth * 4),
+                width: size - (transitionBorderwidth * 4),
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(fit: BoxFit.cover, image: image))))
+      ],
     );
   }
 }

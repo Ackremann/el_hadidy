@@ -29,13 +29,14 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  bottom_sheet_bar: ^2.3.6
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
   flutter_native_splash: ^2.2.11
+  iconify_flutter: ^0.0.5
+  modal_bottom_sheet: ^2.1.2
   webview_flutter: ^3.0.4
 
 dev_dependencies:

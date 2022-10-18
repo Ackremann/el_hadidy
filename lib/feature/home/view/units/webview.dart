@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:eh_hadidy/config/routes.dart';
+import 'package:eh_hadidy/feature/home/view/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -8,12 +10,22 @@ class WebViewWidget extends StatelessWidget {
   final Completer<WebViewController> controller;
   @override
   Widget build(BuildContext context) {
-    return WebView(
-      initialUrl: 'https://elhadidypharmacy.com',
-      javascriptMode: JavascriptMode.unrestricted,
-      onWebViewCreated: (WebViewController webViewController) {
-        controller.complete(webViewController);
-      },
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              MagicRouter.navigateAndReplacement(const HomeView());
+            },
+            icon: const Icon(Icons.arrow_back_ios)),
+        actions: [NavigationControls(controller.future)],
+      ),
+      body: WebView(
+        initialUrl: 'https://elhadidypharmacy.com',
+        javascriptMode: JavascriptMode.unrestricted,
+        onWebViewCreated: (WebViewController webViewController) {
+          controller.complete(webViewController);
+        },
+      ),
     );
   }
 }
